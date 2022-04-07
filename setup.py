@@ -59,7 +59,7 @@ setup(
     install_requires=["pyperclip>=1.8.2"],
     entry_points={
         "console_scripts": [
-            "nameless = nameless.cli:main",
+            "heroku_config_vars_formatter = heroku_config_vars_formatter.main",
         ]
     },
 )
