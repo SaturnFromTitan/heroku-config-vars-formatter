@@ -1,5 +1,8 @@
 def encode(text_):
-    return text_.replace("&", "\\&")
+    special_chars = ["&", "!"]
+    for char in special_chars:
+        text_ = text_.replace(char, f"\\{char}")
+    return text_
 
 
 def format_text(text):
@@ -9,9 +12,13 @@ def format_text(text):
     text = text.split("\nEdit Delete\nKEY")[0]
 
     components = text.split("\nEdit Delete")
-    split_components = [component.split("\n") for component in components if component]
+    split_components = [
+        [c for c in component.split("\n") if c] for component in components
+    ]
+    non_empty_split_components = [c for c in split_components if c]
+
     split_components_clean = [
-        [var_name, encode(value)] for (var_name, value) in split_components
+        [var_name, encode(value)] for (var_name, value) in non_empty_split_components
     ]
     commands = [
         f"export {var_name}={value}" for (var_name, value) in split_components_clean

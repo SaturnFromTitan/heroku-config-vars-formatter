@@ -7,13 +7,13 @@ def test_format_text__encoding():
     text = dedent(
         """
         SECRET_KEY
-        124981u209,c0#14124ä214ö1l2ü12ü&M5
+        124981u209,c0#14124!ä214ö1l2ü12ü&M5
         Edit Delete
     """
     )
     res = format_text(text)
 
-    expected = "export SECRET_KEY=124981u209,c0#14124ä214ö1l2ü12ü\\&M5\n"
+    expected = "export SECRET_KEY=124981u209,c0#14124\\!ä214ö1l2ü12ü\\&M5\n"
     assert res == expected
 
 
