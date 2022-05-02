@@ -1,5 +1,7 @@
 from textwrap import dedent
 
+import pytest
+
 from src.heroku_config_vars_formatter.formatting import format_text
 
 
@@ -78,3 +80,14 @@ def test_format_text__just_values():
 
     expected = "export EMAIL_BACKEND=post_office.EmailBackend\n"
     assert res == expected
+
+
+def test_invalid_input():
+    text = dedent("""ASDLKJASKL""")
+
+    msg = (
+        "The contents of your cache couldn't be formatted."
+        " Please make sure you copied the contents of your Heroku config."
+    )
+    with pytest.raises(ValueError, match=msg):
+        format_text(text)

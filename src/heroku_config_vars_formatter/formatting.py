@@ -1,11 +1,15 @@
-def encode(text_):
-    special_chars = ["&", "!"]
-    for char in special_chars:
-        text_ = text_.replace(char, f"\\{char}")
-    return text_
-
-
 def format_text(text):
+    try:
+        return _format_text(text)
+    except Exception as e:
+        msg = (
+            "The contents of your cache couldn't be formatted."
+            " Please make sure you copied the contents of your Heroku config."
+        )
+        raise ValueError(msg) from e
+
+
+def _format_text(text):
     text = text.strip("\n")
     if "Config Vars" in text:
         text = text.split("Config Vars\n")[1]
@@ -24,3 +28,10 @@ def format_text(text):
         f"export {var_name}={value}" for (var_name, value) in split_components_clean
     ]
     return "\n".join(commands) + "\n"
+
+
+def encode(text_):
+    special_chars = ["&", "!"]
+    for char in special_chars:
+        text_ = text_.replace(char, f"\\{char}")
+    return text_
