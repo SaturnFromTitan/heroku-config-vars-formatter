@@ -8,7 +8,7 @@ authors = ["Martin Winkel <martin@pythomation.de>"]
 heroku_config_vars_formatter = "heroku_config_vars_formatter.main:main"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.6"
 pyperclip = "^1.8.2"
 
 [tool.poetry.dev-dependencies]
