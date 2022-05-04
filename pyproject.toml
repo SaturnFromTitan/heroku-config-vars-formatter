@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "heroku_config_vars_formatter"
-version = "1.0.0"
+version = "1.0.1"
 description = "A small utility to set Heroku config vars in a shell."
 authors = ["Martin Winkel <martin@pythomation.de>"]
 
